@@ -56,24 +56,7 @@ void process_data(int a, int b, int c, int d, int e, int f, int g) {
     double result = (double)a / b;
 }
 
-// Violation: Missing exception specification
-void risky_function() {
-    // Violation: Naked new without smart pointer
-    int* array = new int[100];
-    
-    // Violation: Potential memory leak if exception thrown
-    for (int i = 0; i < 100; i++) {
-        array[i] = i;
-    }
-    
-    // Violation: goto statement discouraged
-    if (array[0] == 0) {
-        goto cleanup;
-    }
-    
-    cleanup:
-    delete[] array;  // Violation: Should use delete[] for array
-}
+
 
 // Violation: Function with high complexity
 void complex_function(int x) {
@@ -170,7 +153,6 @@ int main() {
     TestClass obj(5);
     obj.set_value(10, 100);  // Violation: Out of bounds access
     
-    risky_function();
     complex_function(15);
     assembly_function();
     fibonacci(10);
