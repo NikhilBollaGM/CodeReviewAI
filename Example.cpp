@@ -42,7 +42,21 @@ public:
     }
 };
 
-// Violation: Function with too many parameters
+/**
+ * @brief Performs simple checks and arithmetic on seven integer inputs and emits a message for large values.
+ *
+ * This function examines the inputs to perform a basic check (prints "Value is large" when `a > 10`),
+ * computes an unused temporary sum and an unused floating-point division of `a` by `b`. It has no return
+ * value and its primary observable side effect is writing to stdout.
+ *
+ * @param a Primary value used for the "large" check and numerator of the computed division.
+ * @param b Denominator used in the computed division.
+ * @param c Unused input provided for callers' convenience.
+ * @param d Unused input provided for callers' convenience.
+ * @param e Unused input provided for callers' convenience.
+ * @param f Unused input provided for callers' convenience.
+ * @param g Unused input provided for callers' convenience.
+ */
 void process_data(int a, int b, int c, int d, int e, int f, int g) {
     // Violation: Magic numbers
     if (a > 10) {
@@ -58,7 +72,14 @@ void process_data(int a, int b, int c, int d, int e, int f, int g) {
 
 
 
-// Violation: Function with high complexity
+/**
+ * @brief Prints the English word for integers 1 through 10; prints "Many" otherwise.
+ *
+ * Given an integer `x`, writes the corresponding English word to stdout for values
+ * 1..10 ("One".."Ten"). For any other value, writes "Many".
+ *
+ * @param x Integer input deciding which word to print.
+ */
 void complex_function(int x) {
     switch(x) {
         case 1:
@@ -130,6 +151,18 @@ int& get_global() {
     return global_var;  // Violation: Returning reference to global
 }
 
+/**
+ * @brief Program entry point used to exercise intentional coding-standard violations.
+ *
+ * This main function constructs a test scenario containing multiple deliberate
+ * violations (unsafe memory usage, out-of-bounds accesses, uninitialized reads,
+ * type punning, inline assembly invocation, exception handling, use of static
+ * local state, and global modification) to verify detection by code-review or
+ * static-analysis tools. It calls several helper functions defined in the
+ * translation unit and returns 0 on normal completion.
+ *
+ * @return int Exit status (always 0 in this test).
+ */
 int main() {
     // Violation: C-style array
     int arr[10];
